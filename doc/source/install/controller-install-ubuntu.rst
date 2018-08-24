@@ -1,13 +1,13 @@
 Install and configure controller node for Ubuntu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to install and configure the Compute service,
-code-named nova, on the controller node.
+This section describes how to install and configure the Placement service on
+the controller node.
 
 Prerequisites
 -------------
 
-Before you install and configure the Compute service, you must create
+Before you install and configure the Placement service, you must create
 databases, service credentials, and API endpoints.
 
 #. To create the databases, complete these steps:
@@ -17,43 +17,24 @@ databases, service credentials, and API endpoints.
 
      .. code-block:: console
 
-        # mysql
+        $ mysql -u root -p
 
-   * Create the ``nova_api``, ``nova``, ``nova_cell0``, and ``placement``
-     databases:
+   * Create the ``placement`` database:
 
      .. code-block:: console
 
-        MariaDB [(none)]> CREATE DATABASE nova_api;
-        MariaDB [(none)]> CREATE DATABASE nova;
-        MariaDB [(none)]> CREATE DATABASE nova_cell0;
         MariaDB [(none)]> CREATE DATABASE placement;
 
    * Grant proper access to the databases:
 
      .. code-block:: console
 
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
-          IDENTIFIED BY 'NOVA_DBPASS';
-
         MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
           IDENTIFIED BY 'PLACEMENT_DBPASS';
         MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
           IDENTIFIED BY 'PLACEMENT_DBPASS';
 
-     Replace ``NOVA_DBPASS`` with a suitable password.
+     Replace ``PLACEMENT_DBPASS`` with a suitable password.
 
    * Exit the database access client.
 
@@ -62,109 +43,6 @@ databases, service credentials, and API endpoints.
    .. code-block:: console
 
       $ . admin-openrc
-
-#. Create the Compute service credentials:
-
-   * Create the ``nova`` user:
-
-     .. code-block:: console
-
-        $ openstack user create --domain default --password-prompt nova
-
-        User Password:
-        Repeat User Password:
-        +---------------------+----------------------------------+
-        | Field               | Value                            |
-        +---------------------+----------------------------------+
-        | domain_id           | default                          |
-        | enabled             | True                             |
-        | id                  | 8a7dbf5279404537b1c7b86c033620fe |
-        | name                | nova                             |
-        | options             | {}                               |
-        | password_expires_at | None                             |
-        +---------------------+----------------------------------+
-
-   * Add the ``admin`` role to the ``nova`` user:
-
-     .. code-block:: console
-
-        $ openstack role add --project service --user nova admin
-
-     .. note::
-
-        This command provides no output.
-
-   * Create the ``nova`` service entity:
-
-     .. code-block:: console
-
-        $ openstack service create --name nova \
-          --description "OpenStack Compute" compute
-
-        +-------------+----------------------------------+
-        | Field       | Value                            |
-        +-------------+----------------------------------+
-        | description | OpenStack Compute                |
-        | enabled     | True                             |
-        | id          | 060d59eac51b4594815603d75a00aba2 |
-        | name        | nova                             |
-        | type        | compute                          |
-        +-------------+----------------------------------+
-
-#. Create the Compute API service endpoints:
-
-   .. code-block:: console
-
-      $ openstack endpoint create --region RegionOne \
-        compute public http://controller:8774/v2.1
-
-      +--------------+-------------------------------------------+
-      | Field        | Value                                     |
-      +--------------+-------------------------------------------+
-      | enabled      | True                                      |
-      | id           | 3c1caa473bfe4390a11e7177894bcc7b          |
-      | interface    | public                                    |
-      | region       | RegionOne                                 |
-      | region_id    | RegionOne                                 |
-      | service_id   | 060d59eac51b4594815603d75a00aba2          |
-      | service_name | nova                                      |
-      | service_type | compute                                   |
-      | url          | http://controller:8774/v2.1               |
-      +--------------+-------------------------------------------+
-
-      $ openstack endpoint create --region RegionOne \
-        compute internal http://controller:8774/v2.1
-
-      +--------------+-------------------------------------------+
-      | Field        | Value                                     |
-      +--------------+-------------------------------------------+
-      | enabled      | True                                      |
-      | id           | e3c918de680746a586eac1f2d9bc10ab          |
-      | interface    | internal                                  |
-      | region       | RegionOne                                 |
-      | region_id    | RegionOne                                 |
-      | service_id   | 060d59eac51b4594815603d75a00aba2          |
-      | service_name | nova                                      |
-      | service_type | compute                                   |
-      | url          | http://controller:8774/v2.1               |
-      +--------------+-------------------------------------------+
-
-      $ openstack endpoint create --region RegionOne \
-        compute admin http://controller:8774/v2.1
-
-      +--------------+-------------------------------------------+
-      | Field        | Value                                     |
-      +--------------+-------------------------------------------+
-      | enabled      | True                                      |
-      | id           | 38f7af91666a47cfb97b4dc790b94424          |
-      | interface    | admin                                     |
-      | region       | RegionOne                                 |
-      | region_id    | RegionOne                                 |
-      | service_id   | 060d59eac51b4594815603d75a00aba2          |
-      | service_name | nova                                      |
-      | service_type | compute                                   |
-      | url          | http://controller:8774/v2.1               |
-      +--------------+-------------------------------------------+
 
 #. Create a Placement service user using your chosen ``PLACEMENT_PASS``:
 
@@ -217,7 +95,7 @@ databases, service credentials, and API endpoints.
    .. code-block:: console
 
       $ openstack endpoint create --region RegionOne \
-        placement public http://controller:8778
+        placement public http://controller:8780
 
       +--------------+----------------------------------+
       | Field        | Value                            |
@@ -230,11 +108,11 @@ databases, service credentials, and API endpoints.
       | service_id   | 2d1a27022e6e4185b86adac4444c495f |
       | service_name | placement                        |
       | service_type | placement                        |
-      | url          | http://controller:8778           |
+      | url          | http://controller:8780           |
       +--------------+----------------------------------+
 
       $ openstack endpoint create --region RegionOne \
-        placement internal http://controller:8778
+        placement internal http://controller:8780
 
       +--------------+----------------------------------+
       | Field        | Value                            |
@@ -247,11 +125,11 @@ databases, service credentials, and API endpoints.
       | service_id   | 2d1a27022e6e4185b86adac4444c495f |
       | service_name | placement                        |
       | service_type | placement                        |
-      | url          | http://controller:8778           |
+      | url          | http://controller:8780           |
       +--------------+----------------------------------+
 
       $ openstack endpoint create --region RegionOne \
-        placement admin http://controller:8778
+        placement admin http://controller:8780
 
       +--------------+----------------------------------+
       | Field        | Value                            |
@@ -264,11 +142,12 @@ databases, service credentials, and API endpoints.
       | service_id   | 2d1a27022e6e4185b86adac4444c495f |
       | service_name | placement                        |
       | service_type | placement                        |
-      | url          | http://controller:8778           |
+      | url          | http://controller:8780           |
       +--------------+----------------------------------+
 
 Install and configure components
 --------------------------------
+# TODO(edleafe): This section needs to be completely re-written
 
 .. include:: shared/note_configuration_vary_by_distribution.rst
 

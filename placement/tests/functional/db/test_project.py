@@ -10,9 +10,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from nova.api.openstack.placement import exception
-from nova.api.openstack.placement.objects import project as project_obj
-from nova.tests.functional.api.openstack.placement.db import test_base as tb
+from placement import exception
+from placement.objects import project as project_obj
+from nova.tests.functional.db import test_base as tb
 from nova.tests import uuidsentinel as uuids
 
 

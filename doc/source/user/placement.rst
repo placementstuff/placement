@@ -18,15 +18,16 @@
 Overview
 ========
 
-Nova introduced the placement API service in the 14.0.0 Newton release. This
-is a separate REST API stack and data model used to track resource provider
-inventories and usages, along with different classes of resources. For example,
-a resource provider can be a compute node, a shared storage pool, or an IP
-allocation pool. The placement service tracks the inventory and usage of each
-provider. For example, an instance created on a compute node may be a consumer
-of resources such as RAM and CPU from a compute node resource provider, disk
-from an external shared storage pool resource provider and IP addresses from
-an external IP pool resource provider.
+The Placement API service was originally introduced in Nova as part of its
+14.0.0 Newton release. It was designed as a separate REST API stack and data
+model used to track resource provider inventories and usages, along with
+different classes of resources. For example, a resource provider can be a
+compute node, a shared storage pool, or an IP allocation pool. The placement
+service tracks the inventory and usage of each provider. For example, an
+instance created on a compute node may be a consumer of resources such as RAM
+and CPU from a compute node resource provider, disk from an external shared
+storage pool resource provider and IP addresses from an external IP pool
+resource provider.
 
 The types of resources consumed are tracked as **classes**. The service
 provides a set of standard resource classes (for example ``DISK_GB``,
@@ -66,6 +67,7 @@ changed or be partially complete at this time.
 Deployment
 ==========
 
+# TODO(edleafe): Rewrite this once we have deployment settled.
 The placement-api service must be deployed at some point after you have
 upgraded to the 14.0.0 Newton release but before you can upgrade to the 15.0.0
 Ocata release. This is so that the resource tracker in the nova-compute service
