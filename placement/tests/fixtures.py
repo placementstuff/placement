@@ -45,7 +45,7 @@ from  import wsgi_app
 from  import wsgi
 from nova.compute import rpcapi as compute_rpcapi
 from nova import context
-from nova.db import migration
+from placement.db import migration
 from placement.db.sqlalchemy import api as session
 from nova import exception
 from nova.network import model as network_model
@@ -549,10 +549,10 @@ class CellDatabases(fixtures.Fixture):
         # duration of the test (unlike the temporary ones above) and
         # provide the actual "runtime" switching of connections for us.
         self.useFixture(fixtures.MonkeyPatch(
-            'nova.db.sqlalchemy.api.create_context_manager',
+            'placement.db.sqlalchemy.api.create_context_manager',
             self._wrap_create_context_manager))
         self.useFixture(fixtures.MonkeyPatch(
-            'nova.db.sqlalchemy.api.get_context_manager',
+            'placement.db.sqlalchemy.api.get_context_manager',
             self._wrap_get_context_manager))
         self.useFixture(fixtures.MonkeyPatch(
             'nova.context.target_cell',

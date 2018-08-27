@@ -29,7 +29,7 @@ from placement.policies import allocation as policies
 from placement.schemas import allocation as schema
 from placement import util
 from placement import wsgi_wrapper
-from placmement.i18n import _
+from placement.i18n import _
 
 
 LOG = logging.getLogger(__name__)
