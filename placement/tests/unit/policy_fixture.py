@@ -23,7 +23,7 @@ import nova.conf
 from nova.conf import paths
 from nova import policies
 import nova.policy
-from nova.tests.unit import fake_policy
+from placement.tests.unit import fake_policy
 
 CONF = nova.conf.CONF
 

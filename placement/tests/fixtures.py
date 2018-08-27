@@ -57,7 +57,7 @@ from nova import rpc
 from nova import service
 from placement.tests.functional.api import client
 from placement.tests.functional.fixtures import placement
-from nova.tests import uuidsentinel
+from placement.tests import uuidsentinel
 
 _TRUE_VALUES = ('True', 'true', '1', 'yes')
 
