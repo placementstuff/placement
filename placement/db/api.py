@@ -32,7 +32,7 @@ from oslo_log import log as logging
 
 from nova.cells import rpcapi as cells_rpcapi
 import nova.conf
-from nova.db import constants
+from placement.db import constants
 
 
 CONF = nova.conf.CONF
@@ -41,7 +41,7 @@ CONF = nova.conf.CONF
 MAX_INT = constants.MAX_INT
 SQL_SP_FLOAT_MAX = constants.SQL_SP_FLOAT_MAX
 
-_BACKEND_MAPPING = {'sqlalchemy': 'nova.db.sqlalchemy.api'}
+_BACKEND_MAPPING = {'sqlalchemy': 'placement.db.sqlalchemy.api'}
 
 
 IMPL = concurrency.TpoolDbapiWrapper(CONF, backend_mapping=_BACKEND_MAPPING)

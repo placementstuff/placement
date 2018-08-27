@@ -10,15 +10,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from sqlalchemy import MetaData
-from sqlalchemy import Table
-
-from nova.db.sqlalchemy import api_models
-
 
 def upgrade(migrate_engine):
-    meta = MetaData()
-    meta.bind = migrate_engine
-
-    build_requests = Table('build_requests', meta, autoload=True)
-    build_requests.c.block_device_mappings.alter(type=api_models.MediumText())
+    pass

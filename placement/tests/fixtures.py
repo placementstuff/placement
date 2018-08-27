@@ -46,7 +46,7 @@ from  import wsgi
 from nova.compute import rpcapi as compute_rpcapi
 from nova import context
 from nova.db import migration
-from nova.db.sqlalchemy import api as session
+from placement.db.sqlalchemy import api as session
 from nova import exception
 from nova.network import model as network_model
 from nova import objects
@@ -532,7 +532,7 @@ class CellDatabases(fixtures.Fixture):
         # a new database created with the schema we need and the
         # context manager for it stashed.
         with fixtures.MonkeyPatch(
-                'nova.db.sqlalchemy.api.get_context_manager',
+                'placement.db.sqlalchemy.api.get_context_manager',
                 get_context_manager):
             self._cache_schema(connection_str)
             engine = ctxt_mgr.get_legacy_facade().get_engine()

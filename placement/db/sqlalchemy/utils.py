@@ -21,7 +21,7 @@ from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy.types import NullType
 
-from nova.db.sqlalchemy import api as db
+from placement.db.sqlalchemy import api as db
 from nova import exception
 from placement.i18n import _
 
