@@ -49,7 +49,7 @@ from oslo_utils import units
 import six
 from six.moves import range
 
-import nova.conf
+import placement.conf
 from nova import exception
 from placement.i18n import _, _LE, _LI, _LW
 import nova.network
@@ -58,7 +58,7 @@ from nova import safe_utils
 profiler = importutils.try_import('osprofiler.profiler')
 
 
-CONF = nova.conf.CONF
+CONF = placement.conf.CONF
 
 LOG = logging.getLogger(__name__)
 

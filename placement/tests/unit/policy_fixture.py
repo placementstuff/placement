@@ -19,13 +19,13 @@ from oslo_policy import policy as oslo_policy
 from oslo_serialization import jsonutils
 
 from placement import policy as placement_policy
-import nova.conf
-from nova.conf import paths
+import placement.conf
+from placement.conf import paths
 from nova import policies
 import nova.policy
 from placement.tests.unit import fake_policy
 
-CONF = nova.conf.CONF
+CONF = placement.conf.CONF
 
 
 class RealPolicyFixture(fixtures.Fixture):

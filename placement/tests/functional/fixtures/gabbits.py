@@ -81,7 +81,7 @@ class APIFixture(fixture.GabbiFixture):
         policy_opts.set_defaults(CONF)
 
         # Make sure default_config_files is an empty list, not None.
-        # If None /etc/nova/nova.conf is read and confuses results.
+        # If None /etc/placement/placement.conf is read and confuses results.
         CONF([], default_config_files=[])
 
         self._reset_db_flags()

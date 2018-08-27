@@ -31,11 +31,11 @@ from oslo_db import concurrency
 from oslo_log import log as logging
 
 from nova.cells import rpcapi as cells_rpcapi
-import nova.conf
+import placement.conf
 from placement.db import constants
 
 
-CONF = nova.conf.CONF
+CONF = placement.conf.CONF
 # NOTE(cdent): These constants are re-defined in this module to preserve
 # existing references to them.
 MAX_INT = constants.MAX_INT

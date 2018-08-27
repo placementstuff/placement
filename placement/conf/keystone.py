@@ -14,7 +14,7 @@
 from keystoneauth1 import loading as ks_loading
 from oslo_config import cfg
 
-from nova.conf import utils as confutils
+from placement.conf import utils as confutils
 
 
 DEFAULT_SERVICE_TYPE = 'identity'

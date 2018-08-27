@@ -16,7 +16,7 @@
 from oslo_config import cfg
 from oslo_db import options as oslo_db_options
 
-from nova.conf import paths
+from placement.conf import paths
 
 _DEFAULT_SQL_CONNECTION = 'sqlite:///' + paths.state_path_def('nova.sqlite')
 _ENRICHED = False
