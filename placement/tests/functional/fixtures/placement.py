@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from __future__ import absolute_import
+
 import fixtures
 from oslo_config import cfg
 from oslo_config import fixture as config_fixture

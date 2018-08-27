@@ -9,6 +9,7 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+from __future__ import absolute_import
 
 import os
 
@@ -30,7 +31,7 @@ from placement import rc_fields as fields
 from placement.tests import fixtures
 from placement.tests.functional.db import test_base as tb
 from placement.tests.functional.fixtures import capture
-from placement.tests.unit import policy_fixture
+from placement.tests import policy_fixture
 from placement.tests import uuidsentinel as uuids
 
 
