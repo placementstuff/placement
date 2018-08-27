@@ -11,13 +11,11 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-from __future__ import absolute_import
 
-import os
+from __future__ import absolute_import
 
 import fixtures
 from oslo_policy import policy as oslo_policy
-from oslo_serialization import jsonutils
 
 from placement import policy as placement_policy
 import placement.conf
@@ -28,8 +26,6 @@ CONF = placement.conf.CONF
 
 class PlacementPolicyFixture(fixtures.Fixture):
     """Load the default placement policy for tests.
-
-    This fixture requires nova.tests.unit.conf_fixture.ConfFixture.
     """
     def setUp(self):
         super(PlacementPolicyFixture, self).setUp()

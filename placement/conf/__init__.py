@@ -21,6 +21,7 @@ from __future__ import absolute_import
 from oslo_config import cfg
 
 from placement.conf import api
+from placement.conf import base
 from placement.conf import database
 from placement.conf import keystone
 from placement.conf import paths
@@ -29,6 +30,7 @@ from placement.conf import placement
 CONF = cfg.CONF
 
 api.register_opts(CONF)
+base.register_opts(CONF)
 database.register_opts(CONF)
 keystone.register_opts(CONF)
 paths.register_opts(CONF)
