@@ -51,7 +51,7 @@ from six.moves import range
 
 import nova.conf
 from nova import exception
-from nova.i18n import _, _LE, _LI, _LW
+from placement.i18n import _, _LE, _LI, _LW
 import nova.network
 from nova import safe_utils
 

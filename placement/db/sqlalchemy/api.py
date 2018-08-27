@@ -67,7 +67,7 @@ import nova.conf
 import nova.context
 from nova.db.sqlalchemy import models
 from nova import exception
-from nova.i18n import _
+from placement.i18n import _
 from nova import safe_utils
 
 profiler_sqlalchemy = importutils.try_import('osprofiler.sqlalchemy')
