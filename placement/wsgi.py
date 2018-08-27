@@ -24,9 +24,9 @@ from oslo_policy import opts as policy_opts
 from oslo_utils import importutils
 import pbr.version
 
+from placement import conf
 from placement import db_api
 from placement import deploy
-from placement import conf
 
 
 profiler = importutils.try_import('osprofiler.opts')
@@ -70,7 +70,8 @@ def _parse_args(argv, default_config_files):
     # deploy module.
     policy_opts.set_defaults(conf.CONF)
 
-    conf.CONF(argv[1:], project='placement', version=version_info.version_string(),
+    conf.CONF(argv[1:], project='placement',
+              version=version_info.version_string(),
               default_config_files=default_config_files)
 
 

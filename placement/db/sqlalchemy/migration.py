@@ -19,7 +19,6 @@ import os
 from migrate import exceptions as versioning_exceptions
 from migrate.versioning import api as versioning_api
 from migrate.versioning.repository import Repository
-from oslo_db.sqlalchemy import utils as db_utils
 from oslo_log import log as logging
 import sqlalchemy
 from sqlalchemy.sql import null
@@ -74,7 +73,7 @@ def db_version(database='main', context=None):
             LOG.exception(exc)
             # Some pre-Essex DB's may not be version controlled.
             # Require them to upgrade using Essex first.
-            raise exception.NovaException(
+            raise Exception(
                 _("Upgrade DB using Essex release first."))
 
 
