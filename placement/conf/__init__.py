@@ -30,5 +30,6 @@ CONF = cfg.CONF
 
 api.register_opts(CONF)
 base.register_opts(CONF)
+database.register_opts(CONF)
 paths.register_opts(CONF)
 placement.register_opts(CONF)
